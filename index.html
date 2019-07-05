@@ -10,9 +10,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <style>
+        body {
+            font-size: 9px !important;
+        }
         .agenda {}
         .agenda .table{
             table-layout: fixed
+        }
+        .containerPrincipal{
+            padding: 15px;
         }
         /* Dates */
         .agenda .agenda-date {
@@ -20,8 +26,8 @@
         }
 
         .agenda .agenda-date .dayofmonth {
-            width: 40px;
-            font-size: 36px;
+            width: 20px;
+            font-size: 25px;
             line-height: 36px;
             float: left;
             text-align: right;
@@ -49,19 +55,28 @@
         .agenda .agenda-events .agenda-event {}
         thead tr th{border: 2px solid black !important}
         tbody tr:nth-child(even) {border-bottom: 2px solid black !important}
-        tbody tr td{border-right: 1px solid black !important}
+        tbody tr td{border-right: 1px solid black !important; white-space: pre;}
         tbody tr td:last-child{border-right: 2px solid black !important}
         .agenda-date {border: 2px solid black !important}
         @media (max-width: 767px) {}
+        @media all {
+            div.saltopagina{
+                display: none;
+            }
+        }
+        @media print{
+            div.saltopagina{ 
+                display:block; 
+                page-break-before:always;
+            }
+        }
     </style>
 
 </head>
 
 <body>
-    <div id=containerPrincipal class="container">
+    <div id=containerPrincipal class="containerPrincipal">
 
-
-        <hr />
     </div>
     <script>
         function GetDatesOfWeek(current) {
@@ -77,11 +92,36 @@
             return week; 
         }
 
+        var month = new Array();
+        month[0] = "Enero";
+        month[1] = "Febrero";
+        month[2] = "Marzo";
+        month[3] = "Abril";
+        month[4] = "Mayo";
+        month[5] = "Junio";
+        month[6] = "Julio";
+        month[7] = "Agosto";
+        month[8] = "Septiembre";
+        month[9] = "Octubre";
+        month[10] = "Noviembre";
+        month[11] = "Diciembre";
 
-
+        var weekday = new Array(7);
+        weekday[0] = "Domingo";
+        weekday[1] = "Lunes";
+        weekday[2] = "Martes";
+        weekday[3] = "Miercoles";
+        weekday[4] = "Jueves";
+        weekday[5] = "Viernes";
+        weekday[6] = "Sabado";
         //Años, Mes, Día
-        genera_tabla(new Date(2019, 0, 1));
-        function genera_tabla(argStartDay) {
+        var startDate = new Date(2019, 0, 1);
+        var cantWeeks = 53
+        for (var i = 0; i < cantWeeks; i++) {
+            genera_tabla(startDate, i);
+        }
+
+        function genera_tabla(argStartDay, argIndex) {
             // Obtener la referencia del elemento body
             var container = document.getElementById("containerPrincipal");
 
@@ -129,12 +169,15 @@
             var tblBody = document.createElement("tbody");
 
             // Crea las celdas
+            // GetDatesOfWeek(argStartDay).forEach(function(element) {
+            //     console.log(element);
+            //     console.log(element.getDate());
+            // });
+
+
+            var saltopagina = document.createElement("div");
+                saltopagina.setAttribute("class","saltopagina");
             GetDatesOfWeek(argStartDay).forEach(function(element) {
-                console.log(element);
-            });
-
-
-            for (var i = 0; i < 7; i++) {
                 // Crea las hileras de la tabla
                 var h1 = document.createElement("tr");
                 var h2 = document.createElement("tr");
@@ -145,17 +188,18 @@
                 
                 var dayofmonth = document.createElement("div");
                 dayofmonth.setAttribute('class', 'dayofmonth');
-                dayofmonth.appendChild(document.createTextNode('5'));                    
+                console.log(element.getDate());
+                dayofmonth.appendChild(document.createTextNode(element.getDate()));                    
                 celda.appendChild(dayofmonth)
 
                 var shortdate = document.createElement("div");
                 shortdate.setAttribute('class', 'shortdate');
-                shortdate.appendChild(document.createTextNode('Julio, 2019'));
+                shortdate.appendChild(document.createTextNode(month[element.getMonth()] +', '+ element.getFullYear()));
                 celda.appendChild(shortdate);
 
                 var dayofweek = document.createElement("div");
                 dayofweek.setAttribute('class', 'dayofweek');
-                dayofweek.appendChild(document.createTextNode('Viernes'));
+                dayofweek.appendChild(document.createTextNode(weekday[element.getDay()]));
                 celda.appendChild(dayofweek);
                 
                 h1.appendChild(celda);
@@ -185,14 +229,19 @@
                 h2c2.appendChild(document.createTextNode('Dosis Insulina'));
                 h2.appendChild(h2c2);
                 var h2c3 = document.createElement("td");
+                h2c3.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c3);
                 var h2c4 = document.createElement("td");
+                h2c4.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c4);
                 var h2c5 = document.createElement("td");
+                h2c5.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c5);
                 var h2c6 = document.createElement("td");
+                h2c6.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c6);
                 var h2c7 = document.createElement("td");
+                h2c7.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c7);
                 var h2c8 = document.createElement("td");
                 h2.appendChild(h2c8);
@@ -201,7 +250,7 @@
                 // agrega la hilera al final de la tabla (al final del elemento tblbody)
                 tblBody.appendChild(h1);
                 tblBody.appendChild(h2);
-            }
+            });
 
             // posiciona el <tbody> debajo del elemento <table>
             tabla.appendChild(tblBody);
@@ -212,8 +261,12 @@
             tableResponsive.setAttribute('class', 'table-responsive');       
             tableResponsive.appendChild(tabla);
             agenda.appendChild(tableResponsive);
+            agenda.appendChild(document.createElement("hr"));
             // appends <table> into <body>
             container.appendChild(agenda);
+            if(argIndex % 2){
+                container.appendChild(saltopagina);
+            }
         }
     </script>
 </body>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+        .agenda {}
+        .agenda .table{
+            table-layout: fixed
+        }
+        /* Dates */
+        .agenda .agenda-date {
+            width: 170px;
+        }
+
+        .agenda .agenda-date .dayofmonth {
+            width: 40px;
+            font-size: 36px;
+            line-height: 36px;
+            float: left;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        /* .agenda .agenda-date .shortdate {
+            font-weight: bolder;
+        } */
+        .agenda .agenda-date .shortdate {
+            font-size: 0.75em;
+            font-weight: bolder;
+        }
+
+
+        /* Times */
+        .agenda .agenda-time {
+            width: 140px;
+        }
+
+
+        /* Events */
+        .agenda .agenda-events {}
+
+        .agenda .agenda-events .agenda-event {}
+        thead tr th{border: 2px solid black !important}
+        tbody tr:nth-child(even) {border-bottom: 2px solid black !important}
+        tbody tr td{border-right: 1px solid black !important}
+        tbody tr td:last-child{border-right: 2px solid black !important}
+        .agenda-date {border: 2px solid black !important}
+        @media (max-width: 767px) {}
+    </style>
+
+</head>
+
+<body>
+    <div id=containerPrincipal class="container">
+
+
+        <hr />
+    </div>
+    <script>
+        function GetDatesOfWeek(current) {
+            var week= new Array(); 
+            // Starting Monday not Sunday
+            current.setDate((current.getDate() - current.getDay() +1));
+            for (var i = 0; i < 7; i++) {
+                week.push(
+                    new Date(current)
+                ); 
+                current.setDate(current.getDate() +1);
+            }
+            return week; 
+        }
+
+
+
+
+        genera_tabla(1);
+        function genera_tabla(argWeek) {
+            // Obtener la referencia del elemento body
+            var container = document.getElementById("containerPrincipal");
+
+            // Crea un elemento <table> y un elemento <tbody>
+            var tabla = document.createElement("table");
+            tabla.setAttribute('class', 'table table-condensed table-bordered');
+
+            var tblHead = document.createElement("thead");
+
+            var hileraThead = document.createElement("tr");
+            
+            var columnCero = document.createElement("th");
+            columnCero.appendChild(document.createTextNode('Fecha'));
+            hileraThead.appendChild(columnCero);
+
+            var columnOne = document.createElement("th");
+            columnOne.appendChild(document.createTextNode('Concepto'));
+            hileraThead.appendChild(columnOne);
+            
+            var columnTwo = document.createElement("th");
+            columnTwo.appendChild(document.createTextNode('Desayuno (8-8:30)'));
+            hileraThead.appendChild(columnTwo);
+            
+            var columnThree = document.createElement("th");
+            columnThree.appendChild(document.createTextNode('Almuerzo'));
+            hileraThead.appendChild(columnThree);
+            
+            var columnFour = document.createElement("th");
+            columnFour.appendChild(document.createTextNode('Merienda'));
+            hileraThead.appendChild(columnFour);
+            
+            var columnFive = document.createElement("th");
+            columnFive.appendChild(document.createTextNode('Cena'));
+            hileraThead.appendChild(columnFive);
+            
+            var columnSix = document.createElement("th");
+            columnSix.appendChild(document.createTextNode('Al acostarse'));
+            hileraThead.appendChild(columnSix);
+            
+            var columnSeven = document.createElement("th");
+            columnSeven.appendChild(document.createTextNode('Observaciones'));
+            hileraThead.appendChild(columnSeven);
+            tblHead.appendChild(hileraThead);
+            tabla.appendChild(tblHead);
+            var tblBody = document.createElement("tbody");
+
+            // Crea las celdas
+            GetDatesOfWeek(argWeek).forEach(function(element) {
+                console.log(element);
+            });
+
+
+            for (var i = 0; i < 7; i++) {
+                // Crea las hileras de la tabla
+                var h1 = document.createElement("tr");
+                var h2 = document.createElement("tr");
+
+                var celda = document.createElement("td");
+                celda.setAttribute('class', 'agenda-date');
+                celda.setAttribute('rowspan', '2');
+                
+                var dayofmonth = document.createElement("div");
+                dayofmonth.setAttribute('class', 'dayofmonth');
+                dayofmonth.appendChild(document.createTextNode('5'));                    
+                celda.appendChild(dayofmonth)
+
+                var shortdate = document.createElement("div");
+                shortdate.setAttribute('class', 'shortdate');
+                shortdate.appendChild(document.createTextNode('Julio, 2019'));
+                celda.appendChild(shortdate);
+
+                var dayofweek = document.createElement("div");
+                dayofweek.setAttribute('class', 'dayofweek');
+                dayofweek.appendChild(document.createTextNode('Viernes'));
+                celda.appendChild(dayofweek);
+                
+                h1.appendChild(celda);
+                var h1c2 = document.createElement("td");
+                h1c2.appendChild(document.createTextNode('Glucemia'));
+                h1.appendChild(h1c2);
+
+                // celda2.setAttribute('class', 'agenda-time')
+                var h1c3 = document.createElement("td");
+                h1.appendChild(h1c3);
+                var h1c4 = document.createElement("td");
+                h1.appendChild(h1c4);
+                var h1c5 = document.createElement("td");
+                h1.appendChild(h1c5);
+                var h1c6 = document.createElement("td");
+                h1.appendChild(h1c6);
+                var h1c7 = document.createElement("td");
+                h1.appendChild(h1c7); 
+                var h1c8 = document.createElement("td");
+                h1.appendChild(h1c8);      
+
+
+
+
+
+                var h2c2 = document.createElement("td");                
+                h2c2.appendChild(document.createTextNode('Dosis Insulina'));
+                h2.appendChild(h2c2);
+                var h2c3 = document.createElement("td");
+                h2.appendChild(h2c3);
+                var h2c4 = document.createElement("td");
+                h2.appendChild(h2c4);
+                var h2c5 = document.createElement("td");
+                h2.appendChild(h2c5);
+                var h2c6 = document.createElement("td");
+                h2.appendChild(h2c6);
+                var h2c7 = document.createElement("td");
+                h2.appendChild(h2c7);
+                var h2c8 = document.createElement("td");
+                h2.appendChild(h2c8);
+
+
+                // agrega la hilera al final de la tabla (al final del elemento tblbody)
+                tblBody.appendChild(h1);
+                tblBody.appendChild(h2);
+            }
+
+            // posiciona el <tbody> debajo del elemento <table>
+            tabla.appendChild(tblBody);
+
+            var agenda = document.createElement("div");
+            agenda.setAttribute('class', 'agenda');
+            var tableResponsive = document.createElement("div");     
+            tableResponsive.setAttribute('class', 'table-responsive');       
+            tableResponsive.appendChild(tabla);
+            agenda.appendChild(tableResponsive);
+            // appends <table> into <body>
+            container.appendChild(agenda);
+        }
+    </script>
+</body>
+
+</html>

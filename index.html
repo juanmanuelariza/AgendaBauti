@@ -13,12 +13,12 @@
         body {
             font-size: 9px !important;
         }
-        .agenda {}
         .agenda .table{
             table-layout: fixed
         }
         .containerPrincipal{
-            padding: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
         /* Dates */
         .agenda .agenda-date {
@@ -49,15 +49,8 @@
         }
 
 
+        tbody tr td{white-space: pre;}
         /* Events */
-        .agenda .agenda-events {}
-
-        .agenda .agenda-events .agenda-event {}
-        thead tr th{border: 2px solid black !important}
-        tbody tr:nth-child(even) {border-bottom: 2px solid black !important}
-        tbody tr td{border-right: 1px solid black !important; white-space: pre;}
-        tbody tr td:last-child{border-right: 2px solid black !important}
-        .agenda-date {border: 2px solid black !important}
         @media (max-width: 767px) {}
         @media all {
             div.saltopagina{
@@ -115,7 +108,7 @@
         weekday[5] = "Viernes";
         weekday[6] = "Sabado";
         //Años, Mes, Día
-        var startDate = new Date(2019, 0, 1);
+        var startDate = new Date(2019, 6, 5);
         var cantWeeks = 53
         for (var i = 0; i < cantWeeks; i++) {
             genera_tabla(startDate, i);
@@ -134,34 +127,42 @@
             var hileraThead = document.createElement("tr");
             
             var columnCero = document.createElement("th");
+            columnCero.setAttribute("style","border: 2px solid black !important; ")
             columnCero.appendChild(document.createTextNode('Fecha'));
             hileraThead.appendChild(columnCero);
 
             var columnOne = document.createElement("th");
+            columnOne.setAttribute("style","border: 2px solid black !important; ")
             columnOne.appendChild(document.createTextNode('Concepto'));
             hileraThead.appendChild(columnOne);
             
             var columnTwo = document.createElement("th");
+            columnTwo.setAttribute("style","border: 2px solid black !important; ")
             columnTwo.appendChild(document.createTextNode('Desayuno (8-8:30)'));
             hileraThead.appendChild(columnTwo);
             
             var columnThree = document.createElement("th");
+            columnThree.setAttribute("style","border: 2px solid black !important; ")
             columnThree.appendChild(document.createTextNode('Almuerzo'));
             hileraThead.appendChild(columnThree);
             
             var columnFour = document.createElement("th");
+            columnFour.setAttribute("style","border: 2px solid black !important; ")
             columnFour.appendChild(document.createTextNode('Merienda'));
             hileraThead.appendChild(columnFour);
             
             var columnFive = document.createElement("th");
+            columnFive.setAttribute("style","border: 2px solid black !important; ")
             columnFive.appendChild(document.createTextNode('Cena'));
             hileraThead.appendChild(columnFive);
             
             var columnSix = document.createElement("th");
+            columnSix.setAttribute("style","border: 2px solid black !important; ")
             columnSix.appendChild(document.createTextNode('Al acostarse'));
             hileraThead.appendChild(columnSix);
             
             var columnSeven = document.createElement("th");
+            columnSeven.setAttribute("style","border: 2px solid black !important; ")
             columnSeven.appendChild(document.createTextNode('Observaciones'));
             hileraThead.appendChild(columnSeven);
             tblHead.appendChild(hileraThead);
@@ -183,6 +184,7 @@
                 var h2 = document.createElement("tr");
 
                 var celda = document.createElement("td");
+                celda.setAttribute("style","border: 2px solid black !important; ")
                 celda.setAttribute('class', 'agenda-date');
                 celda.setAttribute('rowspan', '2');
                 
@@ -204,21 +206,28 @@
                 
                 h1.appendChild(celda);
                 var h1c2 = document.createElement("td");
+                h1c2.setAttribute("style","border-right: 1px solid black !important; ")
                 h1c2.appendChild(document.createTextNode('Glucemia'));
                 h1.appendChild(h1c2);
 
                 // celda2.setAttribute('class', 'agenda-time')
                 var h1c3 = document.createElement("td");
+                h1c3.setAttribute("style","border-right: 1px solid black !important; ")
                 h1.appendChild(h1c3);
                 var h1c4 = document.createElement("td");
+                h1c4.setAttribute("style","border-right: 1px solid black !important; ")
                 h1.appendChild(h1c4);
                 var h1c5 = document.createElement("td");
+                h1c5.setAttribute("style","border-right: 1px solid black !important; ")
                 h1.appendChild(h1c5);
                 var h1c6 = document.createElement("td");
+                h1c6.setAttribute("style","border-right: 1px solid black !important; ")
                 h1.appendChild(h1c6);
                 var h1c7 = document.createElement("td");
+                h1c7.setAttribute("style","border-right: 1px solid black !important; ")
                 h1.appendChild(h1c7); 
                 var h1c8 = document.createElement("td");
+                h1c8.setAttribute("style","border-right: 2px solid black !important; ")
                 h1.appendChild(h1c8);      
 
 
@@ -227,25 +236,33 @@
 
                 var h2c2 = document.createElement("td");                
                 h2c2.appendChild(document.createTextNode('Dosis Insulina'));
+                h2c2.setAttribute("style","border-right: 1px solid black !important; ")
                 h2.appendChild(h2c2);
                 var h2c3 = document.createElement("td");
+                h2c3.setAttribute("style","border-right: 1px solid black !important; ")
                 h2c3.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c3);
                 var h2c4 = document.createElement("td");
+                h2c4.setAttribute("style","border-right: 1px solid black !important; ")
                 h2c4.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c4);
                 var h2c5 = document.createElement("td");
+                h2c5.setAttribute("style","border-right: 1px solid black !important; ")
                 h2c5.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c5);
                 var h2c6 = document.createElement("td");
+                h2c6.setAttribute("style","border-right: 1px solid black !important; ")
                 h2c6.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c6);
                 var h2c7 = document.createElement("td");
+                h2c7.setAttribute("style","border-right: 1px solid black !important; ")
                 h2c7.appendChild(document.createTextNode('NPH:          C:'));
                 h2.appendChild(h2c7);
                 var h2c8 = document.createElement("td");
+                h2c8.setAttribute("style","border-right: 2px solid black !important; ")
                 h2.appendChild(h2c8);
 
+                h2.setAttribute("style","border-bottom: 2px solid black !important; ")
 
                 // agrega la hilera al final de la tabla (al final del elemento tblbody)
                 tblBody.appendChild(h1);
@@ -261,11 +278,12 @@
             tableResponsive.setAttribute('class', 'table-responsive');       
             tableResponsive.appendChild(tabla);
             agenda.appendChild(tableResponsive);
-            agenda.appendChild(document.createElement("hr"));
+            container.appendChild(document.createElement("hr"));
             // appends <table> into <body>
             container.appendChild(agenda);
             if(argIndex % 2){
                 container.appendChild(saltopagina);
+                container.appendChild(document.createElement("hr"));
             }
         }
     </script>

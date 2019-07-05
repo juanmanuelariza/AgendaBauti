@@ -79,9 +79,9 @@
 
 
 
-
-        genera_tabla(1);
-        function genera_tabla(argWeek) {
+        //Años, Mes, Día
+        genera_tabla(new Date(2019, 0, 1));
+        function genera_tabla(argStartDay) {
             // Obtener la referencia del elemento body
             var container = document.getElementById("containerPrincipal");
 
@@ -129,7 +129,7 @@
             var tblBody = document.createElement("tbody");
 
             // Crea las celdas
-            GetDatesOfWeek(argWeek).forEach(function(element) {
+            GetDatesOfWeek(argStartDay).forEach(function(element) {
                 console.log(element);
             });
 
